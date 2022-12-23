@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .scroll-bar{
+        height: 450px; 
+        font-size:x-large;
+        width: 600px;
+        padding: 25px;
+        overflow-y: scroll;
+        margin: 5% auto;
+        word-spacing: 70px;
+        background-color: rgb(119, 118, 118);
+        
+        box-shadow: -6px 0 #1e1e1e;
+    }
+    h3{
+        word-spacing: 20px;
+    }
+    body{
+        color: white;
+        background-color: rgb(78, 75, 75);
+    }
+    h1{
+        margin-left: 43%;
+    }
+    .input{
+        width: 51.7%;
+        padding: 5px;
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        top: 90.4%;
+        left: 23.7%;
+        word-spacing: 20px;
+        color: white;
+    }
+    input{
+        border-width: 0 0 2px 0;
+        border-color: beige;
+        background-color: transparent;
+        color: white;
+    }
+</style>
+
+<body>
+    <h1>CONTACTS</h1>
+    <div class="scroll-bar">
+        <h3>FirstName LastName Number</h3>
+            {% for i in data %}
+                {{i}}
+                <a href="{% url 'remove' i %}">Delete</a>
+                <br><br>
+            {% endfor%}
+    </div>
+    <div class="input">
+        <form method="POST" action="">
+            {% csrf_token %}
+            <input type="text" placeholder="Firstname"  name="fn" required>
+            <input type="text" placeholder="Lastname" name="ln" required>
+            <input type="text" placeholder="Number" name="nn" required>
+            <button type="submit">Add</button>
+        </form>
+    </div>
+    {{error}}
+</body>
+</html>
